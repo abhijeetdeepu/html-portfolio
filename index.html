@@ -1,44 +1,186 @@
-<!-- TODO 1: Create the HTML Boilerplate -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Exercises</title>
+  <style>
+    /* Reset default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body and Header */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #bbb;
+    }
+
+    /* Exercise List Container */
+    .exercise-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Individual Exercise Cards */
+    .exercise-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 350px;  /* Set a max-width for better control */
+      margin: 20px;
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      overflow: hidden;  /* Hide overflow to ensure no video spills out */
+    }
+
+    .exercise-card:hover {
+      transform: scale(1.05);
+    }
+
+    .exercise-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    /* Focus on Video */
+    .exercise-card video {
+      width: 100%;  /* Ensure the video takes up the full width of the container */
+      height: auto; /* Maintain aspect ratio */
+      max-height: 500px;  /* Allow for bigger videos but restrict height */
+      border-radius: 8px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow to highlight video */
+      object-fit: cover; /* Ensures video scales properly while maintaining landscape aspect ratio */
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    /* Mobile Friendly Styles */
+    @media (max-width: 600px) {
+      .exercise-card {
+        width: 100%;  /* Full width on smaller screens */
+        max-width: 100%;  /* Ensure it doesn't exceed screen width */
+        padding: 5px;  /* Reduce padding to maximize space */
+      }
+
+      .exercise-card video {
+        max-height: 300px;  /* Make video smaller on mobile to prevent overflow */
+      }
+
+      .exercise-card h3 {
+        font-size: 20px; /* Smaller heading on mobile */
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Abhijeet Rao Portfolio</h1>    
-    <h2>I am a Web Developer</h2>
-    <hr>
-    <a href="./public/movie-ranking.html">Movie Ranking Project</a>
-    <h3>The Best Movie According to Abhijeet</h3>
-    <h4>My to 3 movies of all-time</h4>
-    <hr>
-    <h5>Spirited Away</h5>
-    <h6>This is my favourite anime. I love the beautiful image</h6>
-    <h5>Ex Machina</h5>
-    <h6>Really cool sci-fi movie</h6>
-    <h5>Drive</h5>
-    <h6>saper beautiful film. Really article</h6>
-    <a href="./public/3.4 Birthday Invite Project/index.html">Birthday Invite Project</a><br>
-    <img src="./assets/images/fff.png" alt="birthday img" >
-    <hr>
-    <a href="./public/about.html">About Me </a><a href="./public/contact.html">Contact me</a>
 
+  <!-- Header -->
+  <header>
+    <h1>Gym Exercises</h1>
+    <p>Explore different gym exercises for your workout routine.</p>
+  </header>
+
+  <!-- Exercise List Section -->
+  <section id="exercise-list" class="exercise-list">
+    <!-- Exercises will be injected here by JavaScript -->
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Gym Exercises Web App - 2024</p>
+  </footer>
+
+  <script>
+    // Exercise data array (with name and video path for each exercise)
+    const exercises = [
+      {
+        name: "Push-up",
+        videoSrc: "vid.mp4", // Path to video
+      },
+      {
+        name: "Squat",
+        videoSrc: "videos/squat.mp4", // Path to video
+      },
+      {
+        name: "Deadlift",
+        videoSrc: "videos/deadlift.mp4", // Path to video
+      },
+      {
+        name: "Bicep Curl",
+        videoSrc: "videos/bicep_curl.mp4", // Path to video
+      },
+      {
+        name: "Lunge",
+        videoSrc: "videos/lunge.mp4", // Path to video
+      }
+    ];
+
+    // Function to generate exercise cards dynamically
+    function generateExerciseCards() {
+      const exerciseList = document.getElementById('exercise-list');
+      
+      // Loop through the exercises array
+      exercises.forEach(exercise => {
+        const exerciseCard = document.createElement('div');
+        exerciseCard.classList.add('exercise-card');
+        
+        // Fill in the card content
+        exerciseCard.innerHTML = `
+          <h3>${exercise.name}</h3>
+          <video loop autoplay muted>
+            <source src="${exercise.videoSrc}" type="video/mp4">
+            <source src="${exercise.videoSrc.replace('.mp4', '.webm')}" type="video/webm">
+            <p>Your browser does not support the video tag or the video format.</p>
+          </video>
+        `;
+        
+        // Append the card to the exercise list section
+        exerciseList.appendChild(exerciseCard);
+      });
+    }
+
+    // Call the function to generate cards when the page loads
+    window.onload = generateExerciseCards;
+  </script>
 
 </body>
 </html>
 
-<!-- TODO 2: Add Your previous projects' HTML into the public folder -->
-
-<!-- TODO 3: Take screenshots of your project previews and add the images to the images folder -->
-
-<!-- TODO 4: Add titles/subtitles etc. -->
-
-<!-- TODO 5: Add a link to the project pages -->
-
-<!-- TODO 6: Add images to show the project previews
-HINT for TODO 6: You can use the height attribute set to 200 to make the image smaller:
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-height -->
-
-<!-- TODO 7: Add the Contact Me and About Me page links -->
