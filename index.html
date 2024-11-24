@@ -78,7 +78,7 @@
       border-radius: 8px;
       margin-bottom: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow to highlight video */
-      object-fit: cover; /* Ensures video scales properly while maintaining landscape aspect ratio */
+      object-fit: contain; /* Make sure the full video is shown without cropping */
     }
 
     /* Footer */
@@ -101,7 +101,7 @@
       }
 
       .exercise-card video {
-        max-height: 300px;  /* Make video smaller on mobile to prevent overflow */
+        max-height: 300px;  /* Adjust video size for mobile screens */
       }
 
       .exercise-card h3 {
@@ -183,4 +183,3 @@
 
 </body>
 </html>
-
