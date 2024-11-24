@@ -44,6 +44,7 @@
       flex-wrap: wrap;
       justify-content: center;
       padding: 20px;
+      gap: 20px;
     }
 
     /* Individual Exercise Cards */
@@ -52,7 +53,7 @@
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 350px;  /* Set a max-width for better control */
+      max-width: 400px;  /* Increase max-width of card */
       margin: 20px;
       padding: 10px;
       text-align: center;
@@ -70,15 +71,15 @@
       color: #333;
     }
 
-    /* Focus on Video */
+    /* Focus on Video - Adjust video size for larger breathing space */
     .exercise-card video {
-      width: 100%;  /* Ensure the video takes up the full width of the container */
+      width: 100%;  /* Make video fill the full width of the container */
       height: auto; /* Maintain aspect ratio */
-      max-height: 500px;  /* Allow for bigger videos but restrict height */
+      max-height: 60vh;  /* Restrict max height to ensure breathing space */
       border-radius: 8px;
       margin-bottom: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow to highlight video */
-      object-fit: contain; /* Make sure the full video is shown without cropping */
+      object-fit: contain; /* Ensure full video is shown without cropping */
     }
 
     /* Footer */
@@ -101,7 +102,7 @@
       }
 
       .exercise-card video {
-        max-height: 300px;  /* Adjust video size for mobile screens */
+        max-height: 50vh;  /* Adjust video size to allow breathing space on mobile */
       }
 
       .exercise-card h3 {
